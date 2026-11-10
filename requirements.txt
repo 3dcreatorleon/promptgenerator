@@ -1,4 +1,4 @@
-streamlit==1.32.0
-deep-translator==1.11.4
-pillow==10.2.0
-numpy==1.26.4
+streamlit>=1.38.0
+deep-translator>=1.11.4
+pillow>=10.4.0
+numpy>=1.26.4
