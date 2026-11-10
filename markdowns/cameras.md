@@ -1,0 +1,86 @@
+### Formato Medio y Resolución Extrema
+- Hasselblad H6D-100c — Ideal para fotografía comercial de estudio de ultra alta resolución y paisajes de bellas artes.
+- Hasselblad X2D 100C — Excelente para paisajes de alta gama y trabajos de estudio de formato medio portátiles.
+- Hasselblad H6D-400c MS — Perfecta para archivado de museos ultra detallado y captura científica multidisparo.
+- Hasselblad 907X 50C — Fantástica para estilo callejero modular a la altura de la cintura y retratos estéticos de autor.
+- Hasselblad H5D-50c — Excelente para moda profesional de estudio y publicidad comercial de alto detalle.
+- Hasselblad H4D-60 — Ideal para la captura de paisajes y arquitectura que requieren un rango tonal profundo.
+- Phase One XF IQ4 150MP — La elección definitiva para publicidad comercial de alta gama y copias de arte de ultra detalle.
+- Phase One XT Camera System — Diseñada para fotografía de arquitectura y paisaje de élite con control descentrable tilt-shift.
+- Phase One IQ3 100MP Trichromatic — Excepcional para reproducción cromática crítica en bellas artes y retratos de galería.
+- Phase One Achromatic 150MP — Especializada en arquitectura, ciencia y documentación artística puramente en monocromo.
+- Fujifilm GFX 100 II — Increíble para fotografía comercial y de paisaje versátil de alta velocidad en formato medio.
+- Fujifilm GFX 100S II — Perfecta para trabajo de estudio portátil en formato medio y retratos ambientales detallados.
+- Fujifilm GFX 50S II — Ideal para fotógrafos de paisaje y retrato ajustados de presupuesto que entran al formato medio.
+- Fujifilm GFX 50R — Excelente para fotografía callejera y documental con profundidad de campo de formato medio.
+- Leica S3 Medium Format — Creada para moda de alta gama y retratos en exteriores con el renderizado icónico de Leica.
+- Leica S (Typ 007) — Fantástica para sesiones de moda profesional y comerciales a ritmo rápido en localización.
+- Pentax 645Z Digital — Ideal para paisajes en exteriores y trabajo de estudio resistente con sensor de formato medio.
+- Mamiya Leaf Creo 80MP — Especializada en la captura publicitaria de estudio conectada de alta resolución.
+- Alpa 12 SWA Technical Camera — Herramienta de precisión definitiva para fotografía panorámica y arquitectura de bellas artes.
+- Cambo Wide RS 1350 Technical Camera — Diseñada para fotografía profesional de arquitectura con descentramiento y control de perspectiva.
+
+### Cine Digital de Alta Gama (Blockbuster)
+- ARRI Alexa 65 — El estándar de oro para la escala cinematográfica y resolución masiva de superproducciones de Hollywood.
+- ARRI Alexa Mini LF — Perfecta para narración cinematográfica en estabilizadores o mano con profundidad de gran formato.
+- ARRI Alexa 35 — La opción definitiva para tonos de piel cinematográficos, gran rango dinámico y cine moderno.
+- ARRI Alexa SXT EV — Fiable para televisión de alta gama y producciones cinematográficas maestras en formato estándar.
+- ARRI Amira Premium — Ideal para documental, publicidad y emisiones cinematográficas de alta gama con operador único.
+- RED V-Raptor XL 8K VV — Diseñada para cine de acción de gran presupuesto y captura de alta velocidad en gran resolución.
+- RED V-Raptor 8K VV — Excelente para flujo de trabajo cinematográfico en 8K y efectos visuales de alta tasa de fotogramas.
+- RED Komodo-X 6K — Fantástica para configuraciones de cine ágiles, cámaras de impacto (crash cams) y riggs de acción.
+- RED Komodo 6K — Perfecta para cineastas independientes que buscan obturador global y calidad de cine compacta en 6K.
+- RED Monstro 8K VV — Ideal para narrativa cinematográfica de formato completo y anuncios publicitarios de alta gama.
+- RED Ranger Helium 8K S35 — Creada para televisión estructurada y platós que requieren datos Super 35 de alta resolución.
+- Sony Venice 2 8K — La primera opción para producciones de streaming y versatilidad con doble ISO nativo en baja luz.
+- Sony Venice 6K — Excelente para series de televisión episódicas y narrativa cinematográfica con ciencia de color orgánica.
+- Panavision Millennium DXL2 8K — Diseñada para producciones a medida de Hollywood que integran ópticas personalizadas Panavision.
+- Blackmagic URSA Mini Pro 12K — Ideal para cine independiente que requiere placas de VFX ultra detalladas y textura orgánica.
+- Blackmagic URSA Cine 12K — Creada para producciones de streaming de alta gama con flujos de trabajo en RAW sin compresión.
+- Canon EOS C700 FF — Fantástica para drama televisivo y producciones narrativas comerciales de gran formato.
+- Canon EOS C500 Mark II — Excelente para flujos cinematográficos modulares y rodajes documentales independientes.
+- Kinefinity Mavo Edge 8K — Perfecta para proyectos comerciales y cine independiente de gran formato a coste competitivo.
+- Phantom Flex4K High-Speed — La opción indiscutible para planos de acción comercial, ciencia y deportes a cámara súper lenta.
+
+### Cine Digital Compacto y Producción
+- Sony FX9 Full-Frame — Ideal para televisión, documental corporativo e entrevistas con operador único.
+- Sony FX6 Cinema Line — Perfecta para documental ágil de "grabar al vuelo", viajes y planos cinematográficos recurso.
+- Sony FX3 Full-Frame — Excelente para cine independiente con poca luz, trabajo con estabilizador y creadores de contenido.
+- Sony FX30 Super35 — Fantástica para creadores de contenido con presupuesto ajustado que se inician en el perfil de cine.
+- Canon EOS C300 Mark III — El estándar de la industria para documentales de televisión y narrativa estándar.
+- Canon EOS C70 Cinema Camera — Ideal para contenido vertical u horizontal de acción rápida y documental.
+- Canon EOS C80 Cinema Camera — Creada para cine digital moderno y compacto junto con producciones de streaming.
+- Blackmagic Cinema Camera 6K Full-Frame — Fantástica para cine independiente con montura L y RAW de formato completo accesible.
+- Blackmagic Pocket Cinema Camera 6K Pro — Perfecta para cine independiente que necesita filtros ND integrados y alto rango dinámico.
+- Blackmagic Pocket Cinema Camera 4K — Ideal para estudiantes de cine independiente con presupuesto ajustado y vídeos musicales.
+- Panasonic Lumix BS1H Box Camera — Diseñada para streaming multicámara, drones y configuraciones de estudio robóticas.
+- Panasonic Lumix S1H — Cámara aprobada por Netflix ideal para cineastas independientes híbridos y viajes cinematográficos.
+- Z Cam E2-F6 Full-Frame — Excelente para rigs de realidad virtual especializados, crash cams y montajes modulares.
+- Z Cam E2-S6 Super35 — Ideal para secuencias de acción multicámara y gestión de datos de cine independiente.
+- Kinefinity Mavo Mark II — Creada para cineastas independientes que buscan personalización de cine modular.
+- RED Scarlet-W 5K — Excelente para proyectos narrativos indie que requieren la ciencia de color RAW de RED.
+- Sony FS7 Mark II — Un clásico de batalla para periodismo de campo y documentales de televisión.
+- Canon EOS C200 — Ideal para producción de vídeo corporativo y narración documental independiente.
+- Panasonic AU-EVA1 5K — Fantástica para cinematografía de eventos corporativos y documentales ligeros.
+- JVC GY-LS300 4K Camcorder — Diseñada para videografía de eventos al vuelo con objetivos intercambiables Super35.
+
+### Telemetría y Rango Profesional (Rangefinder)
+- Leica M11 — El telémetro digital definitivo para fotografía callejera, documental y conexión óptica pura.
+- Leica M11-P — Ideal para fotoperiodismo discreto con metadatos de autenticidad de contenido integrados.
+- Leica M11 Monochrom — Especializada en fotografía callejera y de bellas artes de alta resolución puramente en blanco y negro.
+- Leica M10-R — Excelente para combinar con cristal clásico de alta resolución y narrativa documental urbana.
+- Leica M10 Monochrom — Perfecta para fotoperiodismo nocturno y de baja luz dedicado al blanco y negro.
+- Leica M10-P — Fantástica para fotografía callejera sigilosa con un obturador ultra silencioso y diseño minimalista.
+- Leica M (Typ 240) — Telémetro digital clásico para un renderizado de color cinematográfico rico en entornos urbanos.
+- Leica M9 Full-Frame — Celebrada por la ciencia de color única de su sensor CCD en fotografía de viajes y calle.
+- Leica M8 Digital — Genial para fotografía callejera artística digital vintage en formato APS-H con filtros IR.
+- Leica M6 TTL 35mm Film — El icónico telémetro mecánico de película para fotoperiodismo clásico y fotografía urbana.
+- Leica M4-P 35mm Film — Compañera mecánica de película fiable para reportajes documentales y viajes.
+- Leica M3 Classic 35mm Film — La elección legendaria para encuadres de 50mm, retratos espontáneos y fotografía callejera atemporal.
+- Voigtländer Bessa R4M — Diseñada para fotografía callejera gran angular con líneas de encuadre integradas de 21mm y 25mm.
+- Zeiss Ikon ZM Rangefinder — Excelente para fotografía analógica con enfoque manual preciso y arquitectura.
+- Epson R-D1 Digital Rangefinder — Telémetro digital pionero e histórico con indicadores analógicos para fotógrafos de calle.
+- Fujifilm X-Pro3 — Telémetro digital moderno estilo rangefinder para fotografía híbrida de calle y documental.
+- Fujifilm X-Pro2 — Cámara APS-C resistente pensada para reportaje callejero y narrativa documental.
+- Pixii Camera (Model A2572) — Innovador telémetro digital sin pantalla diseñado puramente para fotógrafos de calle conectados.
+- Kon
