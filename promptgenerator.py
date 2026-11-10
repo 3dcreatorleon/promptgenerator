@@ -1,23 +1,5 @@
-import importlib.util
 import os
 import re
-import subprocess
-import sys
-
-
-def verificar_e_instalar(paquete_pip, import_nombre=None):
-  if import_nombre is None:
-    import_nombre = paquete_pip
-  if importlib.util.find_spec(import_nombre) is None:
-    subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", paquete_pip]
-    )
-
-
-# Asegurar dependencias necesarias
-verificar_e_instalar("streamlit")
-verificar_e_instalar("deep-translator", "deep_translator")
-
 import streamlit as st
 import streamlit.components.v1 as components
 from deep_translator import MyMemoryTranslator
@@ -26,7 +8,7 @@ st.set_page_config(
     page_title="Generador de Prompts con Traducción Dinámica", layout="wide"
 )
 
-# Estilo CSS para forzar el ajuste de línea en la caja del prompt
+# Estilo CSS para forzar el ajuste de línea (word-wrap) en la caja del prompt
 st.markdown(
     """
     <style>
@@ -168,14 +150,12 @@ with col1:
   )
 
 
-# Función auxiliar para extraer el nombre/término puro limpiando descripciones y formatos bilingües
+# Función auxiliar para extraer el nombre o término puro omitiendo descripciones (—) o traducciones con barra (/)
 def extraer_nombre_o_ingles(texto):
   if not texto or texto == "-- Seleccionar --":
     return ""
-  # Si tiene una descripción separada por guion largo (ej: "Christopher Nolan — Especialista en...")
   if "—" in texto:
     texto = texto.split("—")[0].strip()
-  # Si tiene formato bilingüe de encuadre (ej: "Español / English")
   if "/" in texto:
     texto = texto.split("/")[-1].strip()
   return texto
@@ -197,7 +177,7 @@ def traducir_a_ingles(texto):
 # SI SE PULSA EL BOTÓN DE GENERAR
 if btn_generar:
   with st.spinner("Traduciendo selecciones y ensamblando prompt..."):
-    # 1. Traducir el sujeto principal escrito por el usuario
+    # 1. Traducir el sujeto principal introducido por el usuario
     subject_clean = (
         subject_input.strip() if subject_input != "-- Seleccionar --" else ""
     )
@@ -205,7 +185,7 @@ if btn_generar:
         traducir_a_ingles(subject_clean) if subject_clean else ""
     )
 
-    # 2. Extraer nombres limpios de los desplegables
+    # 2. Extraer nombres limpios de los desplegables ignorando las descripciones en español
     framing_clean = extraer_nombre_o_ingles(selected_framing)
     camera_clean = extraer_nombre_o_ingles(selected_camera)
     photographer_clean = extraer_nombre_o_ingles(selected_photographer)
@@ -214,7 +194,7 @@ if btn_generar:
         render_engine if render_engine != "-- Seleccionar --" else ""
     )
 
-    # Si el encuadre estaba en español y no contenía barra '/', se traduce
+    # Si el encuadre venía en español y sin barra '/', se traduce automáticamente
     if framing_clean and "/" not in selected_framing:
       framing_clean = traducir_a_ingles(framing_clean)
 
@@ -259,7 +239,7 @@ if btn_generar:
         "--no text, typography, watermark, illustration, painting",
     ])
 
-    # Filtrar elementos vacíos y unir con comas
+    # Filtrar entradas vacías y unir con comas
     final_result = ", ".join([p for p in prompt_parts if p])
     st.session_state["prompt_generado"] = final_result
     st.success("¡Prompt generado y traducido con éxito!")
@@ -276,7 +256,7 @@ with col2:
       height=420,
   )
 
-  # Botón de copiado avanzado con JavaScript nativo
+  # Botón de copiado con JavaScript nativo
   copy_code = f"""
     <script>
     function copyPromptToClipboard() {{
