@@ -58,23 +58,23 @@ def parse_markdown_categorized(filepath):
   return categories
 
 
-# Cargar datos estructurados de los archivos Markdown[cite: 2]
-cameras_dict = parse_markdown_categorized(os.path.join(DATA_DIR, "cameras.md"))[cite: 2]
+# Cargar datos estructurados de los archivos Markdown
+cameras_dict = parse_markdown_categorized(os.path.join(DATA_DIR, "cameras.md"))
 photographers_dict = parse_markdown_categorized(
     os.path.join(DATA_DIR, "photographers.md")
-)[cite: 2]
-framing_dict = parse_markdown_categorized(os.path.join(DATA_DIR, "framing.md"))[cite: 2]
+)
+framing_dict = parse_markdown_categorized(os.path.join(DATA_DIR, "framing.md"))
 directors_dict = parse_markdown_categorized(
     os.path.join(DATA_DIR, "directors.md")
-)[cite: 2]
+)
 lights_dict = parse_markdown_categorized(os.path.join(DATA_DIR, "lights.md"))
 mj_style_dict = parse_markdown_categorized(
     os.path.join(DATA_DIR, "midjourneystyle.md")
 )
 
 
-# Selector en Cascada con opción vacía por defecto[cite: 2]
-def cascaded_selector(label, data_dict, key_prefix):[cite: 2]
+# Selector en Cascada con opción vacía por defecto
+def cascaded_selector(label, data_dict, key_prefix):
   categories = ["-- Seleccionar --"] + [
       c for c in data_dict.keys() if c != "-- Seleccionar --"
   ]
@@ -95,31 +95,31 @@ def cascaded_selector(label, data_dict, key_prefix):[cite: 2]
   return selected_item
 
 
-# Inicializar el estado de sesión para el prompt generado[cite: 2]
-if "prompt_generado" not in st.session_state:[cite: 2]
+# Inicializar el estado de sesión para el prompt generado
+if "prompt_generado" not in st.session_state:
   st.session_state["prompt_generado"] = (
       "Haz clic en el botón de generar para ensamblar y traducir tu prompt."
   )
 
 
-# --- INTERFAZ PRINCIPAL ---[cite: 2]
-st.title("🎨 Generador de Prompts con Traducción y Filtro Dinámico")[cite: 2]
+# --- INTERFAZ PRINCIPAL ---
+st.title("🎨 Generador de Prompts con Traducción y Filtro Dinámico")
 st.markdown(
     "Selecciona tus parámetros, escribe tu idea en español y pulsa el botón"
     " inferior para traducir y ensamblar el prompt final."
-)[cite: 2]
+)
 
-col1, col2 = st.columns([1, 1], gap="large")[cite: 2]
+col1, col2 = st.columns([1, 1], gap="large")
 
-with col1:[cite: 2]
-  st.subheader("🛠️ Configuración de Escena")[cite: 2]
+with col1:
+  st.subheader("🛠️ Configuración de Escena")
 
   subject_input = st.text_area(
       "Sujeto / Descripción principal (en español o inglés):",
       "Un ejército de marines espaciales de color azul entrando en una ciudad"
       " destruida",
       height=100,
-  )[cite: 2]
+  )
 
   # Desplegables en cascada para categoría y tipo de luz desde lights.md
   selected_light = cascaded_selector("Iluminación", lights_dict, "light")
@@ -170,60 +170,60 @@ with col1:[cite: 2]
 
   aspect_ratio = st.selectbox(
       "Formato (Aspect Ratio):", ["--ar 16:9", "--ar 4:5", "--ar 1:1", "--ar 9:16"]
-  )[cite: 2]
+  )
 
-  st.write("")[cite: 2]
+  st.write("")
   btn_generar = st.button(
       "🚀 Generar y Traducir Prompt al Inglés", type="primary"
-  )[cite: 2]
+  )
 
 
-# Función auxiliar para extraer el nombre o término puro omitiendo descripciones (—) o traducciones con barra (/)[cite: 2]
-def extraer_nombre_o_ingles(texto):[cite: 2]
-  if not texto or texto == "-- Seleccionar --":[cite: 2]
-    return ""[cite: 2]
-  if "—" in texto:[cite: 2]
-    texto = texto.split("—")[0].strip()[cite: 2]
-  if "/" in texto:[cite: 2]
-    texto = texto.split("/")[-1].strip()[cite: 2]
-  return texto[cite: 2]
+# Función auxiliar para extraer el nombre o término puro omitiendo descripciones (—) o traducciones con barra (/)
+def extraer_nombre_o_ingles(texto):
+  if not texto or texto == "-- Seleccionar --":
+    return ""
+  if "—" in texto:
+    texto = texto.split("—")[0].strip()
+  if "/" in texto:
+    texto = texto.split("/")[-1].strip()
+  return texto
 
 
-# Función cacheada para traducir texto general al inglés usando MyMemoryTranslator[cite: 2]
+# Función cacheada para traducir texto general al inglés usando MyMemoryTranslator
 @st.cache_data
-def traducir_a_ingles(texto):[cite: 2]
-  if not texto or texto == "-- Seleccionar --":[cite: 2]
-    return ""[cite: 2]
-  try:[cite: 2]
+def traducir_a_ingles(texto):
+  if not texto or texto == "-- Seleccionar --":
+    return ""
+  try:
     traducido = MyMemoryTranslator(source="es-ES", target="en-US").translate(
         texto
-    )[cite: 2]
-    return traducido if traducido else texto[cite: 2]
-  except Exception:[cite: 2]
-    return texto[cite: 2]
+    )
+    return traducido if traducido else texto
+  except Exception:
+    return texto
 
 
-# SI SE PULSA EL BOTÓN DE GENERAR[cite: 2]
-if btn_generar:[cite: 2]
-  with st.spinner("Traduciendo selecciones y ensamblando prompt..."):[cite: 2]
-    # 1. Traducir el sujeto principal introducido por el usuario[cite: 2]
+# SI SE PULSA EL BOTÓN DE GENERAR
+if btn_generar:
+  with st.spinner("Traduciendo selecciones y ensamblando prompt..."):
+    # 1. Traducir el sujeto principal introducido por el usuario
     subject_clean = (
         subject_input.strip() if subject_input != "-- Seleccionar --" else ""
-    )[cite: 2]
+    )
     subject_translated = (
         traducir_a_ingles(subject_clean) if subject_clean else ""
-    )[cite: 2]
+    )
 
-    # 2. Extraer nombres limpios de los desplegables comunes[cite: 2]
+    # 2. Extraer nombres limpios de los desplegables comunes
     light_clean = extraer_nombre_o_ingles(selected_light)
     if light_clean and "/" not in selected_light:
       light_clean = traducir_a_ingles(light_clean)
 
-    framing_clean = extraer_nombre_o_ingles(selected_framing)[cite: 2]
-    if framing_clean and "/" not in selected_framing:[cite: 2]
-      framing_clean = traducir_a_ingles(framing_clean)[cite: 2]
+    framing_clean = extraer_nombre_o_ingles(selected_framing)
+    if framing_clean and "/" not in selected_framing:
+      framing_clean = traducir_a_ingles(framing_clean)
 
-    prompt_parts = [][cite: 2]
+    prompt_parts = []
 
     if chk_midjourney_style:
       mj_clean = extraer_nombre_o_ingles(selected_mj_artist)
@@ -246,75 +246,75 @@ if btn_generar:[cite: 2]
 
       prompt_parts.extend([aspect_ratio, "--v 6.0"])
     else:
-      camera_clean = extraer_nombre_o_ingles(selected_camera)[cite: 2]
-      photographer_clean = extraer_nombre_o_ingles(selected_photographer)[cite: 2]
-      director_clean = extraer_nombre_o_ingles(selected_director)[cite: 2]
+      camera_clean = extraer_nombre_o_ingles(selected_camera)
+      photographer_clean = extraer_nombre_o_ingles(selected_photographer)
+      director_clean = extraer_nombre_o_ingles(selected_director)
       render_clean = (
           render_engine if render_engine != "-- Seleccionar --" else ""
-      )[cite: 2]
+      )
 
-      if framing_clean and subject_translated:[cite: 2]
+      if framing_clean and subject_translated:
         prompt_parts.append(
             f"{framing_clean.lower()} of {subject_translated.lower()}"
-        )[cite: 2]
-      elif subject_translated:[cite: 2]
-        prompt_parts.append(subject_translated.lower())[cite: 2]
-      elif framing_clean:[cite: 2]
-        prompt_parts.append(framing_clean.lower())[cite: 2]
+        )
+      elif subject_translated:
+        prompt_parts.append(subject_translated.lower())
+      elif framing_clean:
+        prompt_parts.append(framing_clean.lower())
 
-      if chk_pro_photo:[cite: 2]
+      if chk_pro_photo:
         prompt_parts.append(
             "professional commercial photography, award-winning composition"
-        )[cite: 2]
-      if chk_concept_art:[cite: 2]
+        )
+      if chk_concept_art:
         prompt_parts.append(
             "masterpiece concept art, intricate digital painting design"
-        )[cite: 2]
+        )
 
-      if director_clean:[cite: 2]
+      if director_clean:
         prompt_parts.append(
             f"shot in the moody cinematic style of {director_clean}"
-        )[cite: 2]
-      if camera_clean:[cite: 2]
-        prompt_parts.append(f"captured on {camera_clean}")[cite: 2]
-      if render_clean:[cite: 2]
-        prompt_parts.append(f"physically-based render with {render_clean}")[cite: 2]
+        )
+      if camera_clean:
+        prompt_parts.append(f"captured on {camera_clean}")
+      if render_clean:
+        prompt_parts.append(f"physically-based render with {render_clean}")
 
       prompt_parts.append(
           "volumetric shadow, hyper-detailed surface roughness, authentic"
           " textures"
-      )[cite: 2]
+      )
 
       if light_clean:
         prompt_parts.append(f"{light_clean.lower()} lighting")
 
-      if photographer_clean:[cite: 2]
-        prompt_parts.append(f"in the iconic style of {photographer_clean}")[cite: 2]
+      if photographer_clean:
+        prompt_parts.append(f"in the iconic style of {photographer_clean}")
 
       prompt_parts.extend([
           aspect_ratio,
           "--v 6.0 --style raw",
           "--no text, typography, watermark, illustration, painting",
-      ])[cite: 2]
+      ])
 
-    # Filtrar entradas vacías y unir con comas[cite: 2]
-    final_result = ", ".join([p for p in prompt_parts if p])[cite: 2]
-    st.session_state["prompt_generado"] = final_result[cite: 2]
-    st.success("¡Prompt generado y traducido con éxito!")[cite: 2]
+    # Filtrar entradas vacías y unir con comas
+    final_result = ", ".join([p for p in prompt_parts if p])
+    st.session_state["prompt_generado"] = final_result
+    st.success("¡Prompt generado y traducido con éxito!")
 
 
-with col2:[cite: 2]
-  st.subheader("⚡ Prompt Ensamblado (Midjourney v6)")[cite: 2]
+with col2:
+  st.subheader("⚡ Prompt Ensamblado (Midjourney v6)")
 
-  final_prompt = st.session_state["prompt_generado"][cite: 2]
+  final_prompt = st.session_state["prompt_generado"]
 
   st.text_area(
       label="Prompt Completo (Listo para copiar):",
       value=final_prompt,
       height=420,
-  )[cite: 2]
+  )
 
-  # Botón de copiado con JavaScript nativo[cite: 2]
+  # Botón de copiado con JavaScript nativo
   copy_code = f"""
     <script>
     function copyPromptToClipboard() {{
@@ -346,11 +346,11 @@ with col2:[cite: 2]
     ">
         📋 Copiar Prompt al Portapapeles
     </button>
-    """[cite: 2]
-  components.html(copy_code, height=65)[cite: 2]
+    """
+  components.html(copy_code, height=65)
 
-  st.divider()[cite: 2]
-  st.markdown("### 📊 Estado de los Datos Cargados")[cite: 2]
+  st.divider()
+  st.markdown("### 📊 Estado de los Datos Cargados")
   st.write(
       f"✔️ **framing.md**: {len(framing_dict)} categorías |"
       f" **photographers.md**: {len(photographers_dict)} categorías |"
@@ -358,4 +358,4 @@ with col2:[cite: 2]
       f" **directors.md**: {len(directors_dict)} categorías |"
       f" **lights.md**: {len(lights_dict)} categorías |"
       f" **midjourneystyle.md**: {len(mj_style_dict)} categorías"
-  )[cite: 2]
+  )
