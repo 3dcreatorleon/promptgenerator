@@ -28,7 +28,7 @@
 - Ian McQue — naves voladoras oxidadas de estética scrap-punk
 - Chris Foss — naves espaciales gigantescas retro con patrones de colores vivos
 - John Berkey — naves espaciales impresionistas con pinceladas dinámicas y metal
-- Maciej Kuciara — cyberpunk realista, luz nocturna e implantes cibernéticos
+- **Maciej Kuciara** — *concept art* cyberpunk fotorrealista, iluminación cinematográfica nocturna con neones atmosféricos, integración orgánica de implantes cibernéticos, trajes tácticos de alta tecnología y estética *tech-noir* (conocido por su trabajo en *Ghost in the Shell*, *The Last of Us* y *Cyberpunk 2077*)
 - Ash Thorp — estética tech-noir oscura, vehículos futuristas e interfaces HUD
 - Khyzyl Saleem — diseño automotriz cyberpunk agresivo y reflejos nocturnos
 - Vitaly Bulgarov — robótica hard-surface hiperdetallada y exoesqueletos complejos

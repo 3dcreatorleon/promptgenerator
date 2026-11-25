@@ -1,5 +1,6 @@
 import os
 import re
+import unicodedata
 import numpy as np
 from PIL import Image
 import streamlit as st
@@ -25,7 +26,9 @@ st.markdown(
 )
 
 DATA_DIR = "./markdowns"
+ARTISTS_DIR = os.path.join(DATA_DIR, "artistas")
 os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(ARTISTS_DIR, exist_ok=True)
 
 
 # Función cacheada para parsear archivos Markdown estructurados con categorías
@@ -58,6 +61,53 @@ def parse_markdown_categorized(filepath):
   if not categories:
     categories["-- Seleccionar --"] = ["-- Seleccionar --"]
   return categories
+
+
+# Convierte el nombre de un artista en el nombre de archivo esperado (slug)
+def slugify_artist(nombre):
+  if not nombre:
+    return ""
+  texto = unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode("ascii")
+  texto = texto.lower()
+  texto = re.sub(r"[^a-z0-9]+", "-", texto).strip("-")
+  return texto
+
+
+# Lee la ficha individual del artista en ./markdowns/artistas/<slug>.md si existe
+@st.cache_data(ttl=60)
+def cargar_ficha_artista(artist_name):
+  slug = slugify_artist(artist_name)
+  if not slug:
+    return None, None
+
+  filepath = os.path.join(ARTISTS_DIR, f"{slug}.md")
+  if not os.path.exists(filepath):
+    return None, None
+
+  prompt_base_lines = []
+  params_lines = []
+  seccion_actual = None
+
+  with open(filepath, "r", encoding="utf-8") as f:
+    for line in f:
+      line_str = line.strip()
+      if line_str.startswith("## "):
+        header_lower = line_str[3:].strip().lower()
+        if "prompt base" in header_lower:
+          seccion_actual = "prompt"
+        elif "parámetros" in header_lower or "parametros" in header_lower:
+          seccion_actual = "params"
+        else:
+          seccion_actual = None
+      elif line_str and not line_str.startswith("#"):
+        if seccion_actual == "prompt":
+          prompt_base_lines.append(line_str)
+        elif seccion_actual == "params":
+          params_lines.append(line_str)
+
+  prompt_base = ", ".join(prompt_base_lines).strip()
+  params_extra = " ".join(params_lines).strip()
+  return prompt_base, params_extra
 
 
 # Cargar datos estructurados de los archivos Markdown
@@ -106,6 +156,13 @@ def extraer_nombre_o_ingles(texto):
   if "/" in texto:
     texto = texto.split("/")[-1].strip()
   return texto
+
+
+# Extrae la característica tras el guion largo (—) en midjourneystyle.md como respaldo
+def extraer_caracteristica_md(texto):
+  if not texto or texto == "-- Seleccionar --" or "—" not in texto:
+    return ""
+  return texto.split("—", 1)[1].strip()
 
 
 # Función cacheada para traducir texto general al inglés usando MyMemoryTranslator
@@ -312,10 +369,30 @@ with tab_gen:
 
         if light_clean:
           prompt_parts.append(f"{light_clean.lower()} lighting")
-        if mj_clean:
-          prompt_parts.append(f"in the style of {mj_clean}")
 
-        prompt_parts.extend([aspect_ratio, "--v 6.0"])
+        extra_params = ""
+        if mj_clean:
+          # 1. Intentar leer la ficha individual en ./markdowns/artistas/<slug>.md
+          ficha_prompt, ficha_params = cargar_ficha_artista(mj_clean)
+          if ficha_prompt:
+            prompt_parts.append(ficha_prompt)
+            prompt_parts.append(f"in the style of {mj_clean}")
+            extra_params = ficha_params
+          else:
+            # 2. Respaldo automático usando la característica de midjourneystyle.md
+            caract_es = extraer_caracteristica_md(selected_mj_artist)
+            if caract_es:
+              caract_en = traducir_a_ingles(caract_es)
+              if caract_en:
+                prompt_parts.append(caract_en.lower())
+            prompt_parts.append(f"in the style of {mj_clean}")
+
+        # Ajustar versión/modelo si la ficha recomienda --niji 6
+        if "--niji" in extra_params:
+          prompt_parts.extend([aspect_ratio, extra_params])
+        else:
+          mj_tail = f"--v 6.0 {extra_params}".strip()
+          prompt_parts.extend([aspect_ratio, mj_tail])
       else:
         camera_clean = extraer_nombre_o_ingles(selected_camera)
         photographer_clean = extraer_nombre_o_ingles(selected_photographer)
@@ -418,6 +495,11 @@ with tab_gen:
     components.html(copy_code, height=65)
 
     st.divider()
+    fichas_artistas_count = (
+        len([f for f in os.listdir(ARTISTS_DIR) if f.endswith(".md")])
+        if os.path.exists(ARTISTS_DIR)
+        else 0
+    )
     st.markdown("### 📊 Estado de los Datos Cargados")
     st.write(
         f"✔️ **framing.md**: {len(framing_dict)} categorías |"
@@ -425,7 +507,8 @@ with tab_gen:
         f" **cameras.md**: {len(cameras_dict)} categorías |"
         f" **directors.md**: {len(directors_dict)} categorías |"
         f" **lights.md**: {len(lights_dict)} categorías |"
-        f" **midjourneystyle.md**: {len(mj_style_dict)} categorías"
+        f" **midjourneystyle.md**: {len(mj_style_dict)} categorías |"
+        f" **Fichas individuales (`artistas/`)**: {fichas_artistas_count}"
     )
 
 # ==========================================
